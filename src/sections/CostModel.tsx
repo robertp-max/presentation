@@ -1,0 +1,79 @@
+import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { ANNUAL_COSTS, SCENARIO_METRICS } from '../data/reportData'
+import { useScenario } from '../hooks/useScenario'
+import { Card } from '../components/ui/Card'
+
+export const CostModel = () => {
+  const { scenario } = useScenario()
+
+  const currentMetrics = SCENARIO_METRICS[scenario]
+  const costs = ANNUAL_COSTS[scenario]
+
+  const chartData = [
+    { name: 'Google Cloud', cost: costs.google, color: '#1B4F72' },
+    { name: 'AWS Native', cost: costs.aws, color: '#FAD06E' },
+    { name: 'Medplum', cost: costs.medplum, color: '#C7DCEB' },
+  ]
+
+  return (
+    <section id="cost" className="scroll-mt-8 space-y-6">
+      <div className="flex items-end justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-brand-navy">12-Month Cost Model</h2>
+          <p className="text-brand-darkGray">
+            Scenario: <span className="font-semibold text-brand-charcoal">{scenario}</span> ({currentMetrics.providerCount} Providers)
+          </p>
+        </div>
+        <div className="hidden text-right text-xs text-brand-darkGray md:block">
+          Excludes engineering labor.
+          <br />
+          Based on steady-state approximation.
+        </div>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <Card className="h-96">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" tickFormatter={(value) => `$${value}`} />
+                <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 12 }} />
+                <Tooltip formatter={(value) => `$${Number(value).toLocaleString()}`} />
+                <Bar dataKey="cost" radius={[0, 4, 4, 0]} barSize={40}>
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </Card>
+        </div>
+
+        <div className="space-y-4">
+          <Card title="Scenario Drivers">
+            <ul className="space-y-3 text-sm">
+              <li className="flex justify-between border-b pb-2">
+                <span className="text-brand-darkGray">MAU</span>
+                <span className="font-mono">{currentMetrics.mau}</span>
+              </li>
+              <li className="flex justify-between border-b pb-2">
+                <span className="text-brand-darkGray">API Calls/Prov</span>
+                <span className="font-mono">{currentMetrics.apiCalls}</span>
+              </li>
+              <li className="flex justify-between border-b pb-2">
+                <span className="text-brand-darkGray">Doc Storage</span>
+                <span className="font-mono">{currentMetrics.storage}</span>
+              </li>
+            </ul>
+          </Card>
+
+          <div className="rounded-lg bg-brand-sky p-4 text-xs text-brand-darkGray">
+            <strong>Analysis:</strong> For {scenario} usage, Google Cloud is the most cost-efficient. Medplum's fixed $2,000/mo
+            cost dominates the chart at this scale compared to cloud-native primitives.
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
