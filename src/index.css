@@ -15,6 +15,70 @@ body {
   color: #1f1f1f;
 }
 
+.swipe-card {
+  width: 100%;
+}
+
+.swipe-in-right {
+  animation: swipeInRight 320ms ease-out;
+}
+
+.swipe-out-left {
+  animation: swipeOutLeft 320ms ease-out;
+}
+
+.swipe-in-left {
+  animation: swipeInLeft 320ms ease-out;
+}
+
+.swipe-out-right {
+  animation: swipeOutRight 320ms ease-out;
+}
+
+@keyframes swipeInRight {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swipeOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeInLeft {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swipeOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+}
+
 .brand-mark {
   width: 32px;
   height: 32px;
