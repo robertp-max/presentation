@@ -10,11 +10,17 @@ import { Roadmap } from './sections/Roadmap'
 import titleLogo from './assets/logos/logo_dark_bg.png'
 
 const ANIMATION_MS = 320
+const COVER_ZOOM_MS = 180
 const FULL_REPORT_URL = (import.meta.env.VITE_FULL_REPORT_URL as string | undefined) ?? 'http://127.0.0.1:4173/'
 
-const TitleCard = ({ onView }: { onView: () => void }) => {
+type CardItem = {
+  title: string
+  content: JSX.Element | null
+}
+
+const TitleCard = ({ onView, className }: { onView: () => void; className?: string }) => {
   return (
-    <div className="flex min-h-[640px] items-center justify-center">
+    <div className={`flex min-h-[640px] items-center justify-center ${className ?? ''}`}>
       <div className="w-full max-w-3xl rounded-2xl bg-brand-navyDark px-8 py-14 text-center text-white shadow-xl">
         <img
           src={titleLogo}
@@ -31,6 +37,39 @@ const TitleCard = ({ onView }: { onView: () => void }) => {
         >
           View
         </button>
+      </div>
+    </div>
+  )
+}
+
+const ReportGridCard = ({
+  items,
+  onSelect,
+  className,
+}: {
+  items: CardItem[]
+  onSelect: (index: number) => void
+  className?: string
+}) => {
+  return (
+    <div className={`flex min-h-[640px] items-center justify-center ${className ?? ''}`}>
+      <div className="w-full max-w-4xl rounded-2xl bg-brand-navyDark px-8 py-10 text-white shadow-xl">
+        <h2 className="mb-8 text-center text-3xl font-bold">View Report</h2>
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {items.map((item, index) => (
+            <button
+              key={`${index + 1}-${item.title}`}
+              onClick={() => onSelect(index)}
+              className="rounded-lg border border-white/20 bg-white/10 p-4 text-left transition-colors hover:bg-white/20"
+            >
+              <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-gold text-sm font-bold text-brand-navyDark">
+                {index + 1}
+              </div>
+              <div className="text-sm font-semibold leading-snug">{item.title}</div>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -58,7 +97,7 @@ const EndCard = () => {
 }
 
 const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }) => {
-  const cards = useMemo(
+  const cards = useMemo<CardItem[]>(
     () => [
       { title: 'Title', content: null },
       { title: 'Executive Summary', content: <ExecutiveSummary /> },
@@ -76,6 +115,8 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
   const [previousIndex, setPreviousIndex] = useState<number | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
+  const [showReportGrid, setShowReportGrid] = useState(false)
+  const [isCoverZoomingOut, setIsCoverZoomingOut] = useState(false)
 
   useEffect(() => {
     onIndexChange(currentIndex)
@@ -100,9 +141,31 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
     }
 
     setDirection(nextDirection)
+    setShowReportGrid(false)
     setPreviousIndex(currentIndex)
     setCurrentIndex(nextIndex)
     setIsAnimating(true)
+  }
+
+  const handleReportSelect = (nextIndex: number) => {
+    if (nextIndex === currentIndex) {
+      setShowReportGrid(false)
+      return
+    }
+
+    goTo(nextIndex, nextIndex > currentIndex ? 'next' : 'prev')
+  }
+
+  const handleViewFromCover = () => {
+    if (isCoverZoomingOut || showReportGrid) {
+      return
+    }
+
+    setIsCoverZoomingOut(true)
+    window.setTimeout(() => {
+      setShowReportGrid(true)
+      setIsCoverZoomingOut(false)
+    }, COVER_ZOOM_MS)
   }
 
   return (
@@ -133,8 +196,10 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
             isAnimating ? (direction === 'next' ? 'swipe-in-right' : 'swipe-in-left') : ''
           }`}
         >
-          {currentIndex === 0 ? (
-            <TitleCard onView={() => goTo(1, 'next')} />
+          {currentIndex === 0 && showReportGrid ? (
+            <ReportGridCard items={cards} onSelect={handleReportSelect} className="zoom-enter" />
+          ) : currentIndex === 0 ? (
+            <TitleCard onView={handleViewFromCover} className={isCoverZoomingOut ? 'zoom-exit' : ''} />
           ) : currentIndex === cards.length - 1 ? (
             <EndCard />
           ) : (
