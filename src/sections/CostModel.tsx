@@ -69,8 +69,9 @@ export const CostModel = () => {
           </Card>
 
           <div className="rounded-lg bg-brand-sky p-4 text-xs text-brand-darkGray">
-            <strong>Analysis:</strong> For {scenario} usage, Google Cloud is the most cost-efficient. Medplum's fixed $2,000/mo
-            cost dominates the chart at this scale compared to cloud-native primitives.
+            <strong>Analysis:</strong> Low usage is the most likely case because providers typically log in to report revenue once a
+            month and receive referrals by email, then manage those referrals in their own CRM. At this level, Google Cloud remains
+            the most cost-efficient, while Medplum's fixed $2,000/mo cost dominates.
           </div>
         </div>
       </div>

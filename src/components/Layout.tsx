@@ -2,17 +2,21 @@ import { ReactNode } from 'react'
 import { AlertTriangle, BarChart3, FileText, Layers, ShieldCheck } from 'lucide-react'
 import { useScenario } from '../hooks/useScenario'
 import { ScenarioType } from '../types'
+import logo from '../assets/logos/logo_dark_bg.png'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const { scenario, setScenario } = useScenario()
 
   return (
     <div className="flex min-h-screen flex-col bg-brand-ghost font-sans text-brand-charcoal md:flex-row">
-      <aside className="fixed top-0 z-20 h-auto w-full flex-shrink-0 overflow-y-auto bg-brand-navy text-white print:hidden md:sticky md:h-screen md:w-64">
+      <aside className="fixed top-0 z-20 h-auto w-full flex-shrink-0 overflow-y-auto bg-brand-navyDark text-white print:hidden md:sticky md:h-screen md:w-64">
         <div className="border-b border-brand-navyDark p-6">
-          <div className="flex items-center gap-3 text-xl font-bold tracking-tight">
-            <span className="brand-mark" aria-hidden="true" />
-            <span>FindAHomeCare</span>
+          <div className="flex items-center">
+            <img
+              src={logo}
+              alt="FindAHomeCare logo"
+              className="h-10 w-auto max-w-[190px] object-contain sm:h-12 sm:max-w-[220px] md:h-14 md:max-w-full"
+            />
           </div>
           <p className="mt-1 text-xs text-brand-navyLight">Architecture Brief</p>
         </div>

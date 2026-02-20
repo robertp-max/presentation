@@ -6,6 +6,7 @@ export default {
       colors: {
         brand: {
           navy: '#1B4F72',
+          sidebar: '#255A7D',
           navyDark: '#133B57',
           navyLight: '#C7DCEB',
           sky: '#EDF5F8',

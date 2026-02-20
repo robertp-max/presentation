@@ -9,7 +9,7 @@ interface ScenarioContextType {
 const ScenarioContext = createContext<ScenarioContextType | undefined>(undefined)
 
 export const ScenarioProvider = ({ children }: { children: ReactNode }) => {
-  const [scenario, setScenario] = useState<ScenarioType>('Base')
+  const [scenario, setScenario] = useState<ScenarioType>('Low')
 
   return <ScenarioContext.Provider value={{ scenario, setScenario }}>{children}</ScenarioContext.Provider>
 }
