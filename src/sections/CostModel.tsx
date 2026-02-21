@@ -36,13 +36,30 @@ export const CostModel = () => {
           <Card className="h-96">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
+                <defs>
+                  <linearGradient id="barGoogle" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#1B263B" />
+                    <stop offset="100%" stopColor="#34415a" />
+                  </linearGradient>
+                  <linearGradient id="barAws" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#C5A059" />
+                    <stop offset="100%" stopColor="#e1c78f" />
+                  </linearGradient>
+                  <linearGradient id="barMedplum" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#7B241C" />
+                    <stop offset="100%" stopColor="#a6433a" />
+                  </linearGradient>
+                </defs>
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                 <XAxis type="number" tickFormatter={(value) => `$${value}`} />
                 <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 12 }} />
                 <Tooltip formatter={(value) => `$${Number(value).toLocaleString()}`} />
-                <Bar dataKey="cost" radius={[0, 4, 4, 0]} barSize={40}>
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                <Bar dataKey="cost" radius={[0, 4, 4, 0]} barSize={40} animationDuration={1000} animationEasing="ease-in-out">
+                  {chartData.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={index === 0 ? 'url(#barGoogle)' : index === 1 ? 'url(#barAws)' : 'url(#barMedplum)'}
+                    />
                   ))}
                 </Bar>
               </BarChart>

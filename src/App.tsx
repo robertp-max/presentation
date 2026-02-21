@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { CardFlowLayout } from './components/CardFlowLayout'
 import { ScenarioProvider } from './hooks/useScenario'
 import { ArchitectureOptions } from './sections/ArchitectureOptions'
 import { CostModel } from './sections/CostModel'
 import { ExecutiveSummary } from './sections/ExecutiveSummary'
+import { HowItWorks } from './sections/HowItWorks'
 import { Recommendations } from './sections/Recommendations'
 import { RiskReadiness } from './sections/RiskReadiness'
 import { Roadmap } from './sections/Roadmap'
+import { WhyThisMatters } from './sections/WhyThisMatters'
 import titleLogo from './assets/logos/logo_dark_bg.png'
+import { Button } from './components/ui/Button'
 
 const ANIMATION_MS = 320
 const COVER_ZOOM_MS = 180
@@ -20,23 +24,27 @@ type CardItem = {
 
 const TitleCard = ({ onView, className }: { onView: () => void; className?: string }) => {
   return (
-    <div className={`flex min-h-[640px] items-center justify-center ${className ?? ''}`}>
-      <div className="w-full max-w-3xl rounded-2xl bg-brand-navyDark px-8 py-14 text-center text-white shadow-xl">
+    <div className={`hero-gradient relative flex min-h-[640px] items-center justify-center overflow-hidden rounded-2xl ${className ?? ''}`}>
+      <span className="particle-float left-[15%] top-[18%]" />
+      <span className="particle-float right-[18%] top-[24%]" style={{ animationDelay: '700ms' }} />
+      <span className="particle-float bottom-[24%] right-[30%]" style={{ animationDelay: '1200ms' }} />
+
+      <div className="relative z-10 w-full max-w-3xl px-8 py-14 text-center text-white">
         <img
           src={titleLogo}
           alt="FindAHomeCare logo"
-          className="mx-auto mb-6 h-10 w-auto object-contain"
+          className="mx-auto mb-6 h-12 w-auto object-contain"
         />
-        <h1 className="text-4xl font-bold leading-tight md:text-5xl">Google Cloud MVP Architecture</h1>
+        <h1 className="text-4xl font-bold leading-tight md:text-6xl">Google Cloud MVP Architecture</h1>
+        <div className="mx-auto mt-5 max-w-xl">
+          <div className="hero-divider" />
+        </div>
         <p className="mx-auto mt-5 max-w-2xl text-sm text-brand-navyLight md:text-base">
           Decision-ready architecture and cost flow for a low-usage, provider onboarding MVP.
         </p>
-        <button
-          onClick={onView}
-          className="mt-10 rounded-md bg-brand-gold px-8 py-3 text-sm font-semibold uppercase tracking-wide text-brand-navyDark transition-colors hover:bg-brand-goldLight"
-        >
+        <Button onClick={onView} className="mt-10">
           View
-        </button>
+        </Button>
       </div>
     </div>
   )
@@ -52,7 +60,7 @@ const ReportGridCard = ({
   className?: string
 }) => {
   return (
-    <div className={`flex min-h-[640px] items-center justify-center ${className ?? ''}`}>
+    <div className={`step-fade-slide flex min-h-[640px] items-center justify-center ${className ?? ''}`}>
       <div className="w-full max-w-4xl rounded-2xl bg-brand-navyDark px-8 py-10 text-white shadow-xl">
         <h2 className="mb-8 text-center text-3xl font-bold">View Report</h2>
 
@@ -61,9 +69,9 @@ const ReportGridCard = ({
             <button
               key={`${index + 1}-${item.title}`}
               onClick={() => onSelect(index)}
-              className="rounded-lg border border-white/20 bg-white/10 p-4 text-left transition-colors hover:bg-white/20"
+              className="group rounded-lg border border-white/20 bg-white/10 p-4 text-left transition-all hover:-translate-y-1 hover:bg-white/20"
             >
-              <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-gold text-sm font-bold text-brand-navyDark">
+              <div className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-gold text-sm font-bold text-brand-navyDark transition-transform group-hover:scale-110">
                 {index + 1}
               </div>
               <div className="text-sm font-semibold leading-snug">{item.title}</div>
@@ -79,31 +87,35 @@ const EndCard = () => {
   return (
     <div className="flex min-h-[640px] items-center justify-center">
       <div className="w-full max-w-3xl rounded-2xl bg-brand-navyDark px-8 py-14 text-center text-white shadow-xl">
-        <img src={titleLogo} alt="FindAHomeCare logo" className="mx-auto mb-6 h-10 w-auto object-contain" />
+        <img src={titleLogo} alt="FindAHomeCare logo" className="mx-auto mb-6 h-12 w-auto object-contain" />
         <p className="mx-auto mt-5 max-w-2xl text-sm text-brand-navyLight md:text-base">
           Open the full report version with sidebar navigation and scrollable sections.
         </p>
-        <a
-          href={FULL_REPORT_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-10 inline-block rounded-md bg-brand-gold px-8 py-3 text-sm font-semibold uppercase tracking-wide text-brand-navyDark transition-colors hover:bg-brand-goldLight"
-        >
+        <Button className="mt-10" onClick={() => window.open(FULL_REPORT_URL, '_blank', 'noopener,noreferrer')}>
           View Report
-        </a>
+        </Button>
       </div>
     </div>
   )
 }
 
 const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }) => {
-  const cards = useMemo<CardItem[]>(
+  const cards = useMemo(
     () => [
       { title: 'Title', content: null },
-      { title: 'Executive Summary', content: <ExecutiveSummary /> },
+      {
+        title: 'Executive Summary',
+        content: (
+          <div className="space-y-10">
+            <ExecutiveSummary />
+            <WhyThisMatters />
+          </div>
+        ),
+      },
       { title: 'Architecture Options', content: <ArchitectureOptions /> },
       { title: 'Cost Model', content: <CostModel /> },
       { title: 'Risk & Readiness', content: <RiskReadiness /> },
+      { title: 'How It Works', content: <HowItWorks /> },
       { title: 'Roadmap', content: <Roadmap /> },
       { title: 'Recommendations', content: <Recommendations /> },
       { title: 'View Report', content: null },
@@ -117,6 +129,7 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
   const [showReportGrid, setShowReportGrid] = useState(false)
   const [isCoverZoomingOut, setIsCoverZoomingOut] = useState(false)
+  const touchStartXRef = useRef<number | null>(null)
 
   useEffect(() => {
     onIndexChange(currentIndex)
@@ -147,6 +160,18 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
     setIsAnimating(true)
   }
 
+  const goNext = () => {
+    if (currentIndex < cards.length - 1) {
+      goTo(currentIndex + 1, 'next')
+    }
+  }
+
+  const goPrev = () => {
+    if (currentIndex > 0) {
+      goTo(currentIndex - 1, 'prev')
+    }
+  }
+
   const handleReportSelect = (nextIndex: number) => {
     if (nextIndex === currentIndex) {
       setShowReportGrid(false)
@@ -168,6 +193,25 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
     }, COVER_ZOOM_MS)
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        if (currentIndex === 0 && !showReportGrid) {
+          handleViewFromCover()
+          return
+        }
+        goNext()
+      }
+
+      if (event.key === 'ArrowLeft') {
+        goPrev()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentIndex, showReportGrid])
+
   return (
     <section
       className={`mx-auto w-full max-w-5xl rounded-xl ${
@@ -175,12 +219,51 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
       }`}
     >
       {currentIndex > 0 && currentIndex < cards.length - 1 && (
-        <div className="mb-4 text-sm font-semibold text-brand-darkGray">
-          {currentIndex + 1} / {cards.length} · {cards[currentIndex].title}
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <div className="text-sm font-semibold text-brand-darkGray">
+            {currentIndex + 1} / {cards.length} · {cards[currentIndex].title}
+          </div>
+
+          <div className="flex items-center gap-1">
+            {cards.map((item, index) => {
+              if (index === 0) {
+                return null
+              }
+              const isActive = index === currentIndex
+              return (
+                <button
+                  key={item.title}
+                  onClick={() => goTo(index, index > currentIndex ? 'next' : 'prev')}
+                  className={`h-2 rounded-full transition-all ${isActive ? 'nav-glow-active w-6 bg-brand-gold' : 'w-2 bg-brand-navyLight hover:w-4'}`}
+                  aria-label={`Go to ${item.title}`}
+                />
+              )
+            })}
+          </div>
         </div>
       )}
 
-      <div className="relative min-h-[640px] overflow-hidden">
+      <div
+        className="relative min-h-[640px] overflow-hidden"
+        onTouchStart={(event) => {
+          touchStartXRef.current = event.changedTouches[0].clientX
+        }}
+        onTouchEnd={(event) => {
+          if (touchStartXRef.current === null) {
+            return
+          }
+          const diff = event.changedTouches[0].clientX - touchStartXRef.current
+          if (Math.abs(diff) < 40) {
+            return
+          }
+          if (diff < 0) {
+            goNext()
+          } else {
+            goPrev()
+          }
+          touchStartXRef.current = null
+        }}
+      >
         {previousIndex !== null && (
           <div
             className={`absolute inset-0 swipe-card ${
@@ -197,7 +280,7 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
           }`}
         >
           {currentIndex === 0 && showReportGrid ? (
-            <ReportGridCard items={cards} onSelect={handleReportSelect} className="zoom-enter" />
+            <ReportGridCard items={cards.slice(1)} onSelect={(index) => handleReportSelect(index + 1)} className="zoom-enter" />
           ) : currentIndex === 0 ? (
             <TitleCard onView={handleViewFromCover} className={isCoverZoomingOut ? 'zoom-exit' : ''} />
           ) : currentIndex === cards.length - 1 ? (
@@ -210,12 +293,10 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
 
       {currentIndex > 0 && currentIndex < cards.length - 1 && (
         <div className="mt-6 grid grid-cols-3 items-center">
-          <button
-            onClick={() => goTo(currentIndex - 1, 'prev')}
-            className="justify-self-start rounded-md border border-brand-navyLight px-4 py-2 text-sm font-medium text-brand-navyDark transition-colors hover:bg-brand-sky"
-          >
+          <Button variant="ghost" onClick={goPrev} className="justify-self-start">
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-rotate-12" />
             Back
-          </button>
+          </Button>
 
           <div className="justify-self-center">
             <img
@@ -226,12 +307,10 @@ const FlowCards = ({ onIndexChange }: { onIndexChange: (index: number) => void }
           </div>
 
           {currentIndex < cards.length - 1 ? (
-            <button
-              onClick={() => goTo(currentIndex + 1, 'next')}
-              className="justify-self-end rounded-md bg-brand-navyDark px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-navy"
-            >
+            <Button variant="secondary" onClick={goNext} className="justify-self-end">
               Next
-            </button>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:rotate-12" />
+            </Button>
           ) : (
             <span className="justify-self-end" />
           )}
