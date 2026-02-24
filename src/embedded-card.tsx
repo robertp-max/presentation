@@ -4,6 +4,7 @@ import './index.css'
 import { EmbeddedCardTemplate } from './templates/EmbeddedCardTemplate'
 
 const params = new URLSearchParams(window.location.search)
+const isFramePreview = params.get('frame') === '1'
 
 const title = params.get('title') ?? 'Google Cloud MVP Architecture'
 const subtitle = params.get('subtitle') ?? 'HIPAA-ready, provider-first, launch-oriented'
@@ -13,6 +14,15 @@ const body =
 const ctaLabel = params.get('ctaLabel') ?? 'Open Experience'
 const ctaHref = params.get('ctaHref') ?? 'http://127.0.0.1:4180/'
 const badgeText = params.get('badge') ?? 'FindAHomeCare'
+const previewUrl = (() => {
+  if (isFramePreview) {
+    return undefined
+  }
+
+  const url = new URL(window.location.href)
+  url.searchParams.set('frame', '1')
+  return url.toString()
+})()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
       ctaLabel={ctaLabel}
       ctaHref={ctaHref}
       badgeText={badgeText}
+      previewUrl={previewUrl}
     />
   </StrictMode>,
 )

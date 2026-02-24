@@ -8,6 +8,7 @@ type EmbeddedCardTemplateProps = {
   ctaLabel: string
   ctaHref: string
   badgeText: string
+  previewUrl?: string
 }
 
 export const EmbeddedCardTemplate = ({
@@ -17,10 +18,11 @@ export const EmbeddedCardTemplate = ({
   ctaLabel,
   ctaHref,
   badgeText,
+  previewUrl,
 }: EmbeddedCardTemplateProps) => {
   return (
     <div className="min-h-screen bg-brand-cream p-4 font-sans text-brand-charcoal">
-      <div className="mx-auto flex min-h-[260px] max-w-3xl items-center">
+      <div className="mx-auto flex min-h-[260px] max-w-3xl flex-col gap-6 py-6">
         <article className="interactive-card w-full rounded-2xl bg-white p-6 md:p-8">
           <div className="mb-4 flex items-center justify-between gap-3">
             <span className="inline-flex rounded-full bg-brand-sky px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-navyDark">
@@ -43,6 +45,20 @@ export const EmbeddedCardTemplate = ({
             </Button>
           </div>
         </article>
+
+        {previewUrl ? (
+          <section className="w-full rounded-2xl border border-brand-navyLight/50 bg-white p-4 md:p-5">
+            <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-brand-darkGray">On-Screen LMS Preview</div>
+            <div className="overflow-hidden rounded-xl border border-brand-navyLight/60">
+              <iframe
+                title="LMS embedded card preview"
+                src={previewUrl}
+                className="h-[360px] w-full border-0 bg-brand-cream"
+                loading="lazy"
+              />
+            </div>
+          </section>
+        ) : null}
       </div>
     </div>
   )

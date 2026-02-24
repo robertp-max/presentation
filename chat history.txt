@@ -1,0 +1,123 @@
+Chat History - Session Notes (Feb 20, 2026)
+
+Note:
+- This file is a reconstructed session history created from the active chat context.
+- It captures the full working narrative, key questions, decisions, and outcomes.
+
+====================================================
+1) Branding + Interactive Presentation Work
+====================================================
+- Updated branding and logo usage across the presentation project.
+- Iterated on UI/UX several times (sidebar, logo size/placement, colors, responsiveness).
+- Implemented card-flow navigation experience (no-sidebar flow, swipe/keyboard behavior, first/last card behavior).
+- Added cover card behavior and an 8-card selector from cover “View”.
+- Added richer animations/motion effects in the sandbox copy project.
+- Built and validated multiple times; fixed TypeScript/build issues as they appeared.
+- Ran preview/dev servers across multiple ports and corrected project/port mismatches.
+
+Key project folders discussed:
+- C:\AI\Git\Requirements\presentation (tracked repo)
+- C:\AI\Git\Requirements\presentation-copy (sandbox/experimental)
+
+====================================================
+2) Git + Delivery Milestones
+====================================================
+- Multiple commits/pushes were completed earlier in the session.
+- Build checks completed in both main and copy projects.
+- Correct project preview was eventually launched and verified.
+
+====================================================
+3) Embedded Card Template Request
+====================================================
+Request:
+- Keep current experience untouched and create separate embeddable card template.
+
+Implemented:
+- Added standalone page entry:
+  - embedded-card.html
+- Added template component and entrypoint:
+  - src/templates/EmbeddedCardTemplate.tsx
+  - src/embedded-card.tsx
+- Added query-parameter-driven content support for embedding:
+  - title, subtitle, body, ctaLabel, ctaHref, badge
+- Updated Vite build configuration to output both:
+  - index.html
+  - embedded-card.html
+- Verified successful production build including embedded-card output.
+
+====================================================
+4) Moodle / Training Flow Q&A
+====================================================
+Main points covered:
+- Browser autoplay policies generally block auto-play with sound without user gesture.
+- Recommended pattern: auto-attempt + fallback “Play narration” button.
+- Browser restriction can be done client-side but is not strong security.
+- Moodle cannot force a specific browser.
+- Completion tracking in Moodle requires SCORM/LTI/xAPI/webhook integration—not just iframe display.
+- Quiz unlock after training completion is possible via Activity completion + Restrict access.
+
+====================================================
+5) Workflow Diagram + Prompting
+====================================================
+- Produced swimlane workflow diagram for:
+  - Login -> training -> quiz -> certificate -> audit logging -> logout.
+- Provided Gemini-ready prompts including:
+  - swimlane details,
+  - embedded app configuration,
+  - Moodle communication paths (SCORM/LTI/webhook).
+
+====================================================
+6) New Repository Setup
+====================================================
+Request:
+- Create new folder/repo:
+  C:\AI\Git\training\HomeHealth\CSM-485 Form
+
+Completed:
+- Created folder and initialized git (main branch).
+- Scaffolded React + TypeScript + Vite app.
+- Installed dependencies and confirmed build success.
+- Added Vercel-ready guidance/config:
+  - README updated
+  - vercel.json added
+- Package naming cleaned and validated via npm run build.
+
+====================================================
+7) Moodle Live Setup Guidance (Test Module)
+====================================================
+- Guided live steps for creating test module/course and enabling completion tracking.
+- Confirmed user was on correct Moodle course screens.
+- Recommended URL activity (or Page fallback) for training app link.
+- Instructed quiz lock setup using Restrict access based on activity completion.
+
+====================================================
+8) Branding Direction Change
+====================================================
+- User clarified this is for the main company brand.
+- User provided branding PDF and instructed to NOT use PDF logo asset.
+- User provided PNG logo variants (light/dark text) for usage.
+- Guidance given:
+  - dark-text logo on light backgrounds,
+  - light-text logo on dark backgrounds.
+
+====================================================
+9) Session Handoff / Continuity Support
+====================================================
+- Provided copy/paste handoff block for opening a new chat without losing context.
+- Provided tips for exporting/copying chat transcript manually.
+
+====================================================
+10) Current Open Task Direction (latest)
+====================================================
+- Convert project UI into branded card-based training flow.
+- Place provided PNG logos in app branding path.
+- Keep Moodle compatibility in mind (completion-gated flow).
+
+Suggested immediate next steps after this file:
+1) Continue in C:\AI\Git\training\HomeHealth\CSM-485 Form
+2) Build branded card flow screens
+3) Add logo assets to public/branding
+4) Validate with npm run build
+5) Wire completion event strategy (SCORM/LTI/webhook)
+
+End of session note.
