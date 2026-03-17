@@ -4,24 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          navy: '#1B263B',
-          navyDark: '#0f1728',
-          navyLight: '#d8deeb',
-          sky: '#eef2f8',
-          gold: '#C5A059',
-          goldDark: '#8e7340',
-          goldLight: '#e8d7b3',
-          garnet: '#7B241C',
-          cream: '#F5F5F0',
-          charcoal: '#1a1d24',
-          darkGray: '#404754',
-          softGray: '#eceff3',
-          ghost: '#f7f8fb',
+        dark: {
+          bg: '#0d1117',
+          card: '#161b22',
+          input: '#21262d',
+          border: '#30363d',
         },
+        accent: {
+          DEFAULT: '#e94560',
+          hover: '#ff6b81',
+        },
+        txt: {
+          DEFAULT: '#e6edf3',
+          dim: '#8b949e',
+        },
+        ok: '#3fb950',
+        warn: '#d29922',
+        fail: '#f85149',
+        info: '#58a6ff',
+        purple: '#bc8cff',
       },
       fontFamily: {
-        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        sans: ['Segoe UI', 'system-ui', 'sans-serif'],
+        mono: ['Cascadia Code', 'Consolas', 'monospace'],
       },
     },
   },
