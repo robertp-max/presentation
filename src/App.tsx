@@ -123,103 +123,111 @@ function App() {
       </header>
 
       <main className="brief-main">
-        <section className="hero">
-          <div className="eyebrow">Project Brief · Executive Summary</div>
-          <h1 className="hero-title">CNA Recert · HHA Initial · HHA Renewal · Moodle Build</h1>
-          <p className="hero-lede">
-            Core preparation is complete. Teams are now executing their assigned workstreams.
-            TJ continues to oversee the project. Target timeline: 1 week aggressive / 2 weeks conservative.
-          </p>
-        </section>
+        <div className="layout">
+          <div className="layout-left">
+            <section className="hero">
+              <div className="eyebrow">Project Brief · Executive Summary</div>
+              <h1 className="hero-title">CNA Recert · HHA Initial · HHA Renewal · Moodle Build</h1>
+              <p className="hero-lede">
+                Core preparation is complete. Teams are now executing their assigned workstreams.
+                Dee oversees the project. Target timeline: 1 week aggressive / 2 weeks conservative.
+              </p>
+            </section>
 
-        <section className="status">
-          <h2 className="h2">Current Status</h2>
-          <div className="status-grid">
-            {statusItems.map((s) => (
-              <div className="status-cell" key={s.label}>
-                <div className="status-label">{s.label}</div>
-                <div className="status-value">{s.value}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="workstreams">
-          <h2 className="h2">Workstreams</h2>
-          <div className="ws-grid">
-            <article className="ws">
-              <h3>Compliance</h3>
-              <p>Review the prepared CDPH package, confirm open fields (official emails, school ID, CE fee wording, HHA identifiers, facility info), update the catalog, collect signatures at submission time, and authorize submission.</p>
-            </article>
-            <article className="ws">
-              <h3>Marketing</h3>
-              <p>Narration scripts and slide content are provided. Marketing executes TTS voice and professional design, exports final audio and decks, and delivers an organized batch to the Moodle team.</p>
-            </article>
-            <article className="ws">
-              <h3>Moodle</h3>
-              <p>Build categories and shells, the CNA Online CE 12-course library, the HHA Initial 40-hour structure, quizzes and banks, completion tracking, gating, and evidence exports. Live certificate issuance stays disabled until Compliance clears the package.</p>
-            </article>
-            <article className="ws">
-              <h3>Website</h3>
-              <p>Apply minimum public updates with strict claim safety: contact info, CNA Online CE page with pending-CDPH language, reviewer access path, cautious HHA pages, and catalog update notice. No CDPH-approved or certificate-availability claims before clearance.</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="timeline">
-          <h2 className="h2">Timeline</h2>
-          <div className="tl-grid">
-            <div className="tl-week">
-              <div className="tl-week-head">Week 1</div>
-              <ul>
-                <li>Compliance reviews forms, catalog, and open fields.</li>
-                <li>Moodle builds shells and gating logic.</li>
-                <li>Marketing begins TTS and slide design.</li>
-                <li>Website implements minimum updates.</li>
-              </ul>
-            </div>
-            <div className="tl-week">
-              <div className="tl-week-head">Week 2</div>
-              <ul>
-                <li>Compliance finalizes blockers and signatures.</li>
-                <li>Moodle QA and reviewer access validated.</li>
-                <li>Marketing finalizes upload-ready assets.</li>
-                <li>Final package assembled for submission.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section className="files">
-          <h2 className="h2">Prepared Files</h2>
-          <p className="files-note">All prepared deliverables — click any filename to download.</p>
-          {preparedGroups.map((g) => (
-            <div className="file-group" key={g.id}>
-              <h3 className="file-group-title">{g.name}</h3>
-              <ul className="file-list">
-                {g.files.map((f) => (
-                  <li className="file-row" key={f.href}>
-                    <a className="file-name" href={f.href} download>{f.label}</a>
-                    <span className={`file-type type-${f.type.toLowerCase()}`}>{f.type}</span>
-                    <span className="file-purpose">{f.purpose}</span>
-                  </li>
+            <section className="status">
+              <h2 className="h2">Current Status</h2>
+              <div className="status-grid">
+                {statusItems.map((s) => (
+                  <div className="status-cell" key={s.label}>
+                    <div className="status-label">{s.label}</div>
+                    <div className="status-value">{s.value}</div>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          ))}
-        </section>
+              </div>
+            </section>
 
-        <section className="gate">
-          <h2 className="h2">Approval Gate</h2>
-          <p>
-            Execution continues now. Do not submit, sign, publish, advertise approval, or issue
-            certificates until Compliance completes final review and TJ approves the next step.
-          </p>
-        </section>
+            <section className="workstreams">
+              <h2 className="h2">Workstreams</h2>
+              <div className="ws-grid">
+                <article className="ws">
+                  <h3>Compliance</h3>
+                  <p>Review prepared CDPH package, confirm open fields (emails, school ID, CE fee wording, HHA identifiers, facility info), update catalog, collect signatures at submission, authorize submission.</p>
+                </article>
+                <article className="ws">
+                  <h3>Marketing</h3>
+                  <p>Narration and slide content are provided. Execute TTS voice and professional design; export final audio and decks; deliver organized batch to Moodle team.</p>
+                </article>
+                <article className="ws">
+                  <h3>Moodle</h3>
+                  <p>Build categories, shells, the 12-course CNA library and HHA 40-hour structure; configure quizzes, completion tracking, gating, and evidence exports. Live certificate issuance stays disabled until clearance.</p>
+                </article>
+                <article className="ws">
+                  <h3>Website</h3>
+                  <p>Apply minimum public updates with strict claim safety: contact info, CNA Online CE page with pending-CDPH language, reviewer access path, cautious HHA pages, catalog update notice.</p>
+                </article>
+              </div>
+            </section>
+
+            <section className="timeline">
+              <h2 className="h2">Timeline</h2>
+              <div className="tl-grid">
+                <div className="tl-week">
+                  <div className="tl-week-head">Week 1</div>
+                  <ul>
+                    <li>Compliance reviews forms, catalog, and open fields.</li>
+                    <li>Moodle builds shells and gating logic.</li>
+                    <li>Marketing begins TTS and slide design.</li>
+                    <li>Website implements minimum updates.</li>
+                  </ul>
+                </div>
+                <div className="tl-week">
+                  <div className="tl-week-head">Week 2</div>
+                  <ul>
+                    <li>Compliance finalizes blockers and signatures.</li>
+                    <li>Moodle QA and reviewer access validated.</li>
+                    <li>Marketing finalizes upload-ready assets.</li>
+                    <li>Final package assembled for submission.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section className="gate">
+              <h2 className="h2">Approval Gate</h2>
+              <p>
+                Execution continues now. Do not submit, sign, publish, advertise approval, or issue
+                certificates until Compliance completes final review and Dee approves the next step.
+              </p>
+            </section>
+          </div>
+
+          <aside className="layout-right">
+            <header className="files-head">
+              <h2 className="h2">Prepared Files</h2>
+              <span className="files-count">{preparedGroups.reduce((n, g) => n + g.files.length, 0)} files</span>
+            </header>
+            <p className="files-note">Click any filename to download.</p>
+            <div className="files-scroll">
+              {preparedGroups.map((g) => (
+                <div className="file-group" key={g.id}>
+                  <h3 className="file-group-title">{g.name}</h3>
+                  <ul className="file-list">
+                    {g.files.map((f) => (
+                      <li className="file-row" key={f.href}>
+                        <a className="file-name" href={f.href} download>{f.label}</a>
+                        <span className={`file-type type-${f.type.toLowerCase()}`}>{f.type}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
 
         <footer className="foot">
           <span>© 2026 CI Institute of Nursing — Internal Project Brief</span>
-          <a className="link" href="https://ciinstituteofnursing.com/" target="_blank" rel="noreferrer">ciinstituteofnursing.com</a>
+          <a className="link link-quiet" href="https://ciinstituteofnursing.com/" target="_blank" rel="noreferrer">ciinstituteofnursing.com</a>
         </footer>
       </main>
     </div>
@@ -232,7 +240,7 @@ function buildMarkdown() {
   lines.push('CNA Recert · HHA Initial · HHA Renewal · Moodle Build')
   lines.push('')
   lines.push('Core preparation is complete. Teams are now executing assigned workstreams.')
-  lines.push('TJ continues to oversee the project. Timeline: 1 week aggressive / 2 weeks conservative.')
+  lines.push('Dee oversees the project. Timeline: 1 week aggressive / 2 weeks conservative.')
   lines.push('')
   lines.push('## Status')
   statusItems.forEach((s) => lines.push(`- ${s.label}: ${s.value}`))
@@ -249,7 +257,7 @@ function buildMarkdown() {
   lines.push('')
   lines.push('## Approval Gate')
   lines.push('Execution continues now. Do not submit, sign, publish, advertise approval, or issue certificates')
-  lines.push('until Compliance completes final review and TJ approves the next step.')
+  lines.push('until Compliance completes final review and Dee approves the next step.')
   return lines.join('\n')
 }
 
