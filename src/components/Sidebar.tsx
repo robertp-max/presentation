@@ -1,4 +1,4 @@
-import { Film, LayoutDashboard, Plus, Settings } from 'lucide-react'
+import { LayoutDashboard, Plus, Settings } from 'lucide-react'
 import type { ProjectSummary } from '../types'
 
 type Page = 'dashboard' | 'services' | { project: string }

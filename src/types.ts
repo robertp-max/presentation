@@ -100,3 +100,33 @@ export interface CreateProjectRequest {
   scenes: number
   llm_model: string
 }
+
+// ── Executive Brief Legacy Types (kept for existing modules) ───────────────
+export type ScenarioType = 'Low' | 'Base' | 'High'
+
+export interface CostMetric {
+  providerCount: number
+  mau: number
+  apiCalls: number
+  storage: string
+}
+
+export interface CostData {
+  google: number
+  medplum: number
+  aws: number
+}
+
+export interface RiskItem {
+  id: number
+  area: string
+  risk: 'Low' | 'Medium' | 'High'
+  detail: string
+  mitigation: string
+}
+
+export interface RoadmapItem {
+  phase: string
+  focus: string
+  items: string[]
+}
