@@ -1,0 +1,160 @@
+# Posttest and Examination Policy — Online CNA Continuing Education
+
+**CI Institute of Nursing**
+419 E Hamilton Ave, Campbell, CA 95008
+ciinstituteofnursing.com
+
+**Document Type:** Institutional Policy
+**Policy Number:** CNA-POL-004
+**Effective Date:** [To be completed upon final submission]
+**Version:** 1.0 (Phase 2 Draft — Submission Quality)
+**Supersedes:** N/A (Initial version)
+**Approved By:** [Authorized Officer — signature required prior to submission]
+
+---
+
+## 1. Purpose
+
+This policy establishes the requirements, procedures, and controls for the final posttest administered at the end of each online CNA CE course offered by CI Institute of Nursing. CDPH TPRU online CE provider requirements specify that learner competency must be assessed before CE credit is issued. This policy defines how CI Institute of Nursing meets that requirement through a summative posttest administered and scored by the LMS.
+
+---
+
+## 2. Scope
+
+This policy applies to:
+- All online CNA CE courses in the CI Institute of Nursing catalog (CNA-CE-001 through CNA-CE-012 and any future additions).
+- All learners enrolled in and completing online CNA CE courses.
+- All LMS administrators, course authors, and instructors responsible for posttest design, configuration, and review.
+
+---
+
+## 3. Policy Statement
+
+CI Institute of Nursing requires a summative posttest for each online CNA CE course. The posttest is designed to assess whether the learner has acquired the knowledge and competencies covered in the course. CE credit is not awarded unless the learner passes the posttest at the required minimum score. The posttest is not accessible until all prior course activities and minimum active time requirements have been satisfied. Posttest results are retained as learner records and are available for CDPH review.
+
+---
+
+## 4. Procedure
+
+### 4.1 — Posttest Design Standards
+
+| Element | Requirement |
+|---|---|
+| Minimum Number of Questions | 10 questions per course posttest |
+| Item Format | Multiple-choice (primary); true/false permitted as secondary format |
+| Minimum Passing Score | 80% (8 of 10 or equivalent scaled threshold) |
+| Question Pool | Each posttest draws from the course-specific question bank |
+| Question Randomization | Questions randomized from bank per attempt where pool size allows |
+| Content Coverage | Questions must cover all major course sections/learning objectives |
+
+### 4.2 — Posttest Access Gate
+
+The posttest is accessible only when all of the following conditions are met:
+1. All required lesson/resource activities in the course are marked complete.
+2. All required section knowledge checks are submitted.
+3. Minimum active time (100 minutes for a 2 CE hour course) has been recorded by the LMS.
+4. The affidavit activity is completed OR the posttest-before-affidavit sequence is followed as configured.
+
+The LMS enforces these prerequisites through restrict-access conditions applied to the posttest activity. Learners who do not meet all prerequisites see the posttest as locked with an explanation of remaining requirements.
+
+### 4.3 — Posttest Attempt Rules
+
+- Learners may attempt the posttest a maximum of three (3) times.
+- After three failed attempts, the learner must contact CI Institute of Nursing administration to receive a course reset and additional attempt authorization.
+- Each attempt is logged with the date, time, score, and pass/fail result.
+- Learners who pass on the first attempt proceed immediately to the affidavit and certificate release gate.
+
+### 4.4 — Passing and Failing
+
+- A score of 80% or higher constitutes a passing result.
+- Learners who pass proceed to the certificate release gate.
+- Learners who fail are shown their score and encouraged to review course content before their next attempt.
+- Detailed correct/incorrect feedback is displayed after each attempt.
+
+### 4.5 — Question Bank and Content Validity
+
+- Each course has a dedicated question bank (see `QUESTION_BANKS/CNA-CE-XXX_QUESTION_BANK.md`).
+- Question banks contain a minimum of 20 questions per course to support randomization.
+- Questions are reviewed for content accuracy, regulatory currency, and clarity before course launch.
+- The Program Director reviews question banks annually and when course content is updated.
+
+### 4.6 — Posttest Score Retention
+
+- Posttest scores and attempt details are retained in the LMS per the CI Institute of Nursing recordkeeping policy.
+- Score data is linked to the learner's identity record and course enrollment.
+- Scores are included in completion reports made available to CDPH upon request.
+
+### 4.7 — Certificate Release After Passing
+
+- Certificate release is a separate gate event; passing the posttest is a necessary but not sole condition.
+- After posttest pass, the learner must also complete the affidavit (if not already completed) and confirm all identity fields are populated.
+- The certificate is generated by the LMS and delivered electronically to the learner's account.
+
+---
+
+## 5. Responsible Roles
+
+| Role | Responsibility |
+|---|---|
+| Course Author / Instructor | Design question bank; review questions for accuracy; update items when content changes |
+| LMS Administrator | Configure posttest settings, gate logic, attempt limits, and score retention |
+| Program Director | Review question banks annually; approve attempt limit exceptions; sign off on passing threshold |
+| CDPH Reviewer (external) | Review posttest questions, gate configuration, and score records during provider review |
+
+---
+
+## 6. Required LMS Control
+
+- Posttest must be configured with prerequisite activity and timer gate.
+- Attempt limit must be set (3 attempts maximum).
+- Question pool must be configured with randomization.
+- Score must be recorded for every attempt.
+- Pass/fail status must be recorded and linked to the learner record.
+- Certificate release must have posttest-pass as a required condition.
+
+---
+
+## 7. Evidence Retained
+
+- Per-learner posttest attempt records including: date, time, score, pass/fail, attempt number.
+- Question bank version in use at time of each attempt.
+- Posttest gate event log confirming prerequisite conditions were met before access.
+- Certificate release event record tied to posttest pass event.
+- Annual question bank review log.
+
+---
+
+## 8. Recordkeeping and Audit Requirement
+
+- Posttest records are retained for a minimum of five (5) years from the date of CE completion.
+- Annual audit of posttest configuration, question bank currency, and passing threshold enforcement is required.
+- Audit findings are reviewed by the Program Director.
+- Changes to passing threshold or attempt limits require Program Director approval and dated change log entry.
+
+---
+
+## 9. Exception Handling
+
+- If a learner exhausts all attempts due to a documented extenuating circumstance, the Program Director may authorize a reset with documented justification.
+- Technical failures during a posttest attempt that prevent a valid score from being recorded must be documented; the affected attempt is voided and not counted against the attempt limit.
+- No exception may lower the effective passing threshold below 80%.
+- All exceptions are reviewed and approved by the Program Director and logged.
+
+---
+
+## 10. Version and Revision Control
+
+| Version | Date | Summary of Changes | Revised By |
+|---|---|---|---|
+| 1.0 | [Submission date] | Initial policy — Phase 2 submission draft | CI Institute of Nursing |
+
+---
+
+## 11. Source References
+
+- CDPH TPRU Online CNA CE Provider Application Requirements (CDPH 192B instructions)
+- California Health and Safety Code, Division 2, Chapter 8.5
+- CI Institute of Nursing CNA Online CE Timer and Seat-Time Policy (CNA-POL-003)
+- CI Institute of Nursing CNA Interactivity and Feedback Policy (CNA-POL-002)
+- CI Institute of Nursing Online CE Recordkeeping Policy (CNA-POL-005)
+- CNA-CE-001 through CNA-CE-012 Question Bank files (`QUESTION_BANKS/`)
